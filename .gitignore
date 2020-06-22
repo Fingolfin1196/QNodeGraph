@@ -1,0 +1,9 @@
+# Project exclude paths
+compile_commands.json
+build/
+build-debug/
+build-release/
+/.idea/
+.clangd/
+.vscode/
+.ccls-cache/
