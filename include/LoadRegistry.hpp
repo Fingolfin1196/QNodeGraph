@@ -1,15 +1,10 @@
 #pragma once
 #include "PortType.hpp"
-#include <QtCore/QHash>
-#include <QtCore/QString>
+#include "helpers/QtHashing.hpp"
 #include <unordered_map>
 
 template<PortType> class PortItem;
 class PortStorage {
-  struct QStringHash {
-    std::size_t operator()(const QString& string) const { return qHash(string); }
-  };
-
   std::unordered_map<QString, PortItem<PortType::INPUT>*, QStringHash> input_port_registry_{};
   std::unordered_map<QString, PortItem<PortType::OUTPUT>*, QStringHash> output_port_registry_{};
 

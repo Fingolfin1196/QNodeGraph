@@ -1,6 +1,7 @@
 #pragma once
 #include "LoadRegistry.hpp"
 #include "PortType.hpp"
+#include "helpers/QtHashing.hpp"
 #include <QtCore/QJsonObject>
 #include <QtWidgets/QGraphicsItem>
 #include <QtWidgets/QGraphicsScene>
@@ -15,8 +16,8 @@ class NodeGraphScene : public QGraphicsScene {
 public:
   using node_creator_t = std::function<NodeItemGroup*(QJsonObject, PortRegistration&)>;
   using connection_creator_t = std::function<ConnectionItem*(QJsonObject, const PortStorage&)>;
-  using nodes_t = std::unordered_map<QString, node_creator_t>;
-  using connections_t = std::unordered_map<QString, connection_creator_t>;
+  using nodes_t = std::unordered_map<QString, node_creator_t, QStringHash>;
+  using connections_t = std::unordered_map<QString, connection_creator_t, QStringHash>;
 
 private:
   nodes_t node_registry_{};
