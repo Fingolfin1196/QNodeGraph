@@ -9,9 +9,9 @@ option(BUILD_EXAMPLES "Build Examples" ON)
 add_library(QNodeGraph SHARED)
 
 set_target_properties(QNodeGraph PROPERTIES CXX_STANDARD 20)
-target_compile_options(QNodeGraph PRIVATE $<$<CONFIG:RELEASE>:-Ofast;-march=native>)
+target_compile_options(QNodeGraph PRIVATE -Wpedantic -Werror -Wextra)
+target_compile_options(QNodeGraph PRIVATE $<$<CONFIG:RELEASE>:-Ofast;-march=native;-Wno-unused-parameter>)
 target_compile_options(QNodeGraph PRIVATE $<$<CONFIG:DEBUG>:-O0;-g>)
-target_compile_options(QNodeGraph PRIVATE -Wpedantic -Werror -Wextra -Wno-error=unused-parameter)
 
 set(SOURCES src/ConnectionItem.cpp src/NodeGraphScene.cpp src/NodeGraphView.cpp src/NodeItemGroup.cpp src/NodeProxy.cpp
             src/PortItem.cpp)

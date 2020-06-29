@@ -6,8 +6,12 @@
 
 template<PortType> class PortItem;
 class PortStorage {
-  std::unordered_map<QString, PortItem<PortType::INPUT>*> input_port_registry_{};
-  std::unordered_map<QString, PortItem<PortType::OUTPUT>*> output_port_registry_{};
+  struct QStringHash {
+    std::size_t operator()(const QString& string) const { return qHash(string); }
+  };
+
+  std::unordered_map<QString, PortItem<PortType::INPUT>*, QStringHash> input_port_registry_{};
+  std::unordered_map<QString, PortItem<PortType::OUTPUT>*, QStringHash> output_port_registry_{};
 
 public:
   void registerInputPort(const QString& id, PortItem<PortType::INPUT>* port) { input_port_registry_.emplace(id, port); }
