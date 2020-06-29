@@ -7,3 +7,6 @@ build-release/
 .clangd/
 .vscode/
 .ccls-cache/
+
+# nix stuff
+**/result
